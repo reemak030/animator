@@ -133,33 +133,10 @@ function getLaserPaths() {
    const original=$('animation-canvas');
    if(!original || !original.getBoundingClientRect().width)return;
    if(original.style.visibility!=='hidden')original.style.visibility='hidden';
-   const rect = original.getBoundingClientRect();
-const dpr = Math.min(devicePixelRatio || 1, 2);
-
-// Leave room for the original Animator controls on the right.
-// Find the original Animator controls on the right.
-const controls = document.querySelector('select:not(#laser-mode):not(#laser-avatar):not(#laser-color)');
-
-let gameWidth = rect.width;
-
-if (controls) {
-  const controlRect = controls.getBoundingClientRect();
-
-  // Stop the game canvas before the control panel.
-  gameWidth = Math.max(
-    200,
-    Math.min(rect.width, controlRect.left - rect.left - 35)
-  );
-}
-
-overlay.style.left = rect.left + 'px';
-overlay.style.top = rect.top + 'px';
-overlay.style.width = gameWidth + 'px';
-overlay.style.height = rect.height + 'px';
-
-const w = Math.round(gameWidth * dpr);
-const h = Math.round(rect.height * dpr);
-   
+   const rect=original.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2);
+   overlay.style.left=rect.left+'px';overlay.style.top=rect.top+'px';
+   overlay.style.width=rect.width+'px';overlay.style.height=rect.height+'px';
+   const w=Math.round(rect.width*dpr),h=Math.round(rect.height*dpr);
    if(overlay.width!==w||overlay.height!==h){overlay.width=w;overlay.height=h;}
    g.setTransform(w/1000,0,0,h/1000,w/2,h/2);
    g.fillStyle='#0c1223';g.fillRect(-500,-500,1000,1000);
