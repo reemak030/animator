@@ -1,8 +1,15 @@
 
  // Laser Escape (Q12). Independent overlay: does not modify Lustre's DOM,
  // the Gleam evaluator, or the original drawing renderer.
- import { getLaserPaths } from './app.mjs';
+let laserPaths = [];
 
+window.addEventListener("laser-paths-updated", (event) => {
+  laserPaths = event.detail;
+});
+
+function getLaserPaths() {
+  return laserPaths;
+}
  const colors = { Red: '#ff496d', Pink: '#ff66d8', Blue: '#48a9ff', Green: '#5bffab', Purple: '#b47bff', Rainbow: 'rainbow' };
  const skins = {
    'Classic Noob': { head:'#ffdc35', body:'#2783ef', legs:'#56b34a', arms:'#ffdc35', hair:false },
