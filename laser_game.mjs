@@ -1,7 +1,7 @@
 
  // Laser Escape (Q12). Independent overlay: does not modify Lustre's DOM,
  // the Gleam evaluator, or the original drawing renderer.
-let laserPaths = [];
+let laserPaths = window.laserEscapePaths || [];
 
 window.addEventListener("laser-paths-updated", (event) => {
   laserPaths = event.detail;
